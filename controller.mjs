@@ -33,10 +33,12 @@ app.post("/exercises", (req, res) => {
       req.body.date
     )
     .then((exercise) => {
+      res.type("application/json");
       res.status(201).json(exercise);
     })
     .catch((error) => {
       console.log(error);
+      res.type("application/json");
       res.status(400).json({ Error: "Request failed" });
     });
 });
