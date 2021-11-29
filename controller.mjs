@@ -29,7 +29,7 @@ app.post("/exercises", (req, res) => {
       req.body.name,
       req.body.reps,
       req.body.weight,
-      req.body.units,
+      req.body.unit,
       req.body.date
     )
     .then((exercise) => {
