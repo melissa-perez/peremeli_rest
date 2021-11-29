@@ -73,6 +73,7 @@ const findExercises = async (filter, projection, limit) => {
  * All five parameters will be provided and valid.
  * A path parameter containining a valid id for an existing document/ID
  * will also be provided.
+ * @param {String} id
  * @param {String} exerciseName
  * @param {Number} exerciseReps
  * @param {Number} exerciseWeight
@@ -101,18 +102,15 @@ const updateExercise = async (
   return result.nModified;
 };
 
-// /**
-//  * Deletes user(s) that match the provided values.
-//  * @param {String} [_id]
-//  * @param {String} [userName]
-//  * @param {Number} [userAge]
-//  * @param {String} [userEmail]
-//  * @param {Number} [userPhoneNumber]
-//  * @returns A promise. Resolves to the number of documents deleted.
-//  */
-// const deleteUsers = async (documentsToDelete) => {
-//   const result = await User.deleteMany(documentsToDelete);
-//   return result.deletedCount;
-// };
+/**
+ * Deletes the identified exercise.
+ * No parameters are provided. The id is assumed to be valid.
+ * @param {String} id
+ * @returns A promise. Resolves to the number of documents deleted.
+ */
+const deleteExerciseById = async (id) => {
+  const result = await Exercise.deleteOne({ _id: id });
+  return result.deletedCount;
+};
 
-export { createExercise, findExercises, updateExercise };
+export { createExercise, findExercises, updateExercise, deleteExerciseById };

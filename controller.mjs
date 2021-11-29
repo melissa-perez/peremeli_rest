@@ -88,3 +88,19 @@ app.put("/exercises/:id", (req, res) => {
       res.status(500).json({ Error: "Request failed" });
     });
 });
+
+app.delete("/exercises/:id", (req, res) => {
+  exercises
+    .deleteExerciseById(id)
+    .then((deletedCount) => {
+      if (deletedCount === 1) {
+        res.status(204).send();
+      } else {
+        res.status(500).json({ Error: "Resource not found" });
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      res.send({ error: "Request failed" });
+    });
+});
