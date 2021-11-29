@@ -33,12 +33,25 @@ app.post("/exercises", (req, res) => {
       req.body.date
     )
     .then((exercise) => {
-      res.type("application/json");
       res.status(201).json(exercise);
     })
     .catch((error) => {
       console.log(error);
-      res.type("application/json");
-      res.status(400).json({ Error: "Request failed" });
+      res.status(500).json({ Error: "Request failed" });
+    });
+});
+
+/**
+ * Retrieve all exercises.
+ */
+app.get("/exercises", (req, res) => {
+  exercises
+    .findExercises({}, "", 0)
+    .then((exercises) => {
+      res.status(200).json(exercises);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.send({ error: "Request failed" });
     });
 });

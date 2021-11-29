@@ -56,18 +56,17 @@ const createExercise = async (
   return exercise.save();
 };
 
-// /**
-//  * Retrieve user(s) based on the filters provided.
-//  * @param {Array} filters
-//  * @returns A promise. Resolves to the number of matching documents.
-//  */
-// const findUsers = async (filters) => {
-//   const query = User.find();
-//   if (filters.length > 0) {
-//     query.and(filters);
-//   }
-//   return query.exec();
-// };
+/**
+ * Retrieve all the exercises in the collection.
+ * @param {Object} filter
+ * @param {String} projection
+ * @param {Number} limit
+ * @returns A promise. Resolves to the number of matching documents.
+ */
+const findExercises = async (filter, projection, limit) => {
+  const query = Exercise.find(filter).select(projection).limit(limit);
+  return query.exec();
+};
 
 // /**
 //  * Replace/update/insert the appropriate parameter of the user with the id value provided.
@@ -104,4 +103,4 @@ const createExercise = async (
 //   return result.deletedCount;
 // };
 
-export { createExercise };
+export { createExercise, findExercises };
