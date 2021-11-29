@@ -71,7 +71,7 @@ app.put("/exercises/:id", (req, res) => {
     )
     .then((numUpdated) => {
       if (numUpdated === 1) {
-        res.status(200).res.json({
+        res.status(200).json({
           _id: req.params.id,
           name: req.body.name,
           reps: req.body.reps,
