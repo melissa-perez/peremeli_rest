@@ -52,6 +52,6 @@ app.get("/exercises", (req, res) => {
     })
     .catch((error) => {
       console.log(error);
-      res.send({ error: "Request failed" });
+      res.status(500).json({ Error: "Request failed" });
     });
 });
