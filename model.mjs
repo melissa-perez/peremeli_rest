@@ -29,24 +29,32 @@ const exerciseSchema = mongoose.Schema({
 
 const Exercise = mongoose.model("Exercise", exerciseSchema);
 
-// /**
-//  * Create a user
-//  * @param {String} userName
-//  * @param {Number} userAge
-//  * @param {String} userEmail
-//  * @param {Number} [userPhoneNumber]
-//  * @returns A promise. Resolves to the JSON object for the document created by calling save.
-//  */
-// const createUser = async (userName, userAge, userEmail, userPhoneNumber) => {
-//   const user = new User({
-//     name: userName,
-//     age: userAge,
-//     email: userEmail,
-//     phoneNumber: userPhoneNumber,
-//   });
+/**
+ * Create an exercise
+ * @param {String} exerciseName
+ * @param {Number} exerciseReps
+ * @param {Number} exerciseWeight
+ * @param {String} exerciseUnit
+ * @param {String} exerciseDate
+ * @returns A promise. Resolves to the JSON object for the document created by calling save.
+ */
+const createExercise = async (
+  exerciseName,
+  exerciseReps,
+  exerciseWeight,
+  exerciseUnit,
+  exerciseDate
+) => {
+  const exercise = new Exercise({
+    name: exerciseName,
+    reps: exerciseReps,
+    weight: exerciseWeight,
+    unit: exerciseUnit,
+    date: exerciseDate,
+  });
 
-//   return user.save();
-// };
+  return exercise.save();
+};
 
 // /**
 //  * Retrieve user(s) based on the filters provided.
@@ -96,4 +104,4 @@ const Exercise = mongoose.model("Exercise", exerciseSchema);
 //   return result.deletedCount;
 // };
 
-// export { createUser, findUsers, updateUser, deleteUsers };
+export { createExercise };
