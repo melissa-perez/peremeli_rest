@@ -55,3 +55,36 @@ app.get("/exercises", (req, res) => {
       res.status(500).json({ Error: "Request failed" });
     });
 });
+
+/**
+ * Update the exercise which is identified by the path parameter :id.
+ */
+app.put("/exercises/:id", (req, res) => {
+  exercises
+    .updateExercise(
+      req.params.id,
+      req.body.name,
+      req.body.reps,
+      req.body.weight,
+      req.body.unit,
+      req.body.date
+    )
+    .then((numUpdated) => {
+      if (numUpdated === 1) {
+        res.status(200).res.json({
+          _id: req.params.id,
+          name: req.body.name,
+          reps: req.body.reps,
+          weight: req.body.weight,
+          unit: req.body.unit,
+          date: req.body.date,
+        });
+      } else {
+        res.status(500).json({ Error: "Resource not found" });
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({ Error: "Request failed" });
+    });
+});

@@ -68,26 +68,38 @@ const findExercises = async (filter, projection, limit) => {
   return query.exec();
 };
 
-// /**
-//  * Replace/update/insert the appropriate parameter of the user with the id value provided.
-//  * @param {String} _id
-//  * @param {String} [userName]
-//  * @param {Number} [userAge]
-//  * @param {String} [userEmail]
-//  * @param {Number} [userPhoneNumber]
-//  * @returns A promise. Resolves to the number of documents modified.
-//  */
-// const updateUser = async (_id, fieldsToUpdate) => {
-//   const result = await User.findOneAndUpdate(
-//     { _id: _id },
-//     { $set: fieldsToUpdate },
-//     { rawResult: true }
-//   );
-//   if (result.value === null) {
-//     throw new Error();
-//   }
-//   return result.lastErrorObject.n;
-// };
+/**
+ * Update the identified exercise with the new information.
+ * All five parameters will be provided and valid.
+ * A path parameter containining a valid id for an existing document/ID
+ * will also be provided.
+ * @param {String} exerciseName
+ * @param {Number} exerciseReps
+ * @param {Number} exerciseWeight
+ * @param {String} exerciseUnit
+ * @param {String} exerciseDate
+ * @returns A promise. Resolves to the number of documents modified.
+ */
+const updateExercise = async (
+  id,
+  exerciseName,
+  exerciseReps,
+  exerciseWeight,
+  exerciseUnit,
+  exerciseDate
+) => {
+  const result = await Exercise.replaceOne(
+    { _id: id },
+    {
+      name: exerciseName,
+      reps: exerciseReps,
+      weight: exerciseWeight,
+      unit: exerciseUnit,
+      date: exerciseDate,
+    }
+  );
+  return result.nModified;
+};
 
 // /**
 //  * Deletes user(s) that match the provided values.
@@ -103,4 +115,4 @@ const findExercises = async (filter, projection, limit) => {
 //   return result.deletedCount;
 // };
 
-export { createExercise, findExercises };
+export { createExercise, findExercises, updateExercise };
