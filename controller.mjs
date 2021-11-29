@@ -89,9 +89,12 @@ app.put("/exercises/:id", (req, res) => {
     });
 });
 
+/**
+ * Deletes the exercise which is identified by the path parameter :id.
+ */
 app.delete("/exercises/:id", (req, res) => {
   exercises
-    .deleteExerciseById(id)
+    .deleteExerciseById(req.params.id)
     .then((deletedCount) => {
       if (deletedCount === 1) {
         res.status(204).send();
@@ -101,6 +104,6 @@ app.delete("/exercises/:id", (req, res) => {
     })
     .catch((error) => {
       console.error(error);
-      res.send({ error: "Request failed" });
+      res.status(500).json({ Error: "Request failed" });
     });
 });
