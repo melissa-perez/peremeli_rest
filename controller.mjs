@@ -3,7 +3,7 @@
     importing the model.
 */
 
-import * as users from "./model.mjs";
+import * as exercises from "./model.mjs";
 import express from "express";
 const app = express();
 
