@@ -37,7 +37,7 @@ app.post("/exercises", (req, res) => {
     })
     .catch((error) => {
       console.log(error);
-      res.status(500).json({ Error: "Request failed" });
+      res.status(500).json({ Error: "Cannot add exercise information" });
     });
 });
 
@@ -52,7 +52,7 @@ app.get("/exercises", (req, res) => {
     })
     .catch((error) => {
       console.log(error);
-      res.status(500).json({ Error: "Request failed" });
+      res.status(500).json({ Error: "Cannot display exercise information" });
     });
 });
 
@@ -80,12 +80,12 @@ app.put("/exercises/:id", (req, res) => {
           date: req.body.date,
         });
       } else {
-        res.status(500).json({ Error: "Resource not found" });
+        res.status(500).json({ Error: "Exercise not found" });
       }
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).json({ Error: "Request failed" });
+      res.status(500).json({ Error: "Cannot update exercise" });
     });
 });
 
@@ -99,11 +99,11 @@ app.delete("/exercises/:id", (req, res) => {
       if (deletedCount === 1) {
         res.status(204).send();
       } else {
-        res.status(500).json({ Error: "Resource not found" });
+        res.status(500).json({ Error: "Exercise not found" });
       }
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).json({ Error: "Request failed" });
+      res.status(500).json({ Error: "Cannot delete exercise" });
     });
 });
