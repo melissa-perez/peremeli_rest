@@ -24,6 +24,15 @@ app.listen(PORT, () => {
  * weight, unit and date provided. All are required.
  */
 app.post("/exercises", (req, res) => {
+  let splitDateRequest = req.body.date.split("-");
+  console.log(splitDateRequest);
+
+  let formatDate = new Date(
+    splitDateRequest[0],
+    splitDateRequest[1] - 1,
+    splitDateRequest[2]
+  );
+  console.log(formatDate);
   exercises
     .createExercise(
       req.body.name,
