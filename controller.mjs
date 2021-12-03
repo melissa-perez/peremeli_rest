@@ -44,7 +44,7 @@ app.post("/exercises", (req, res) => {
 /**
  * Retrieve all exercises.
  */
-app.get("/exercises", (res) => {
+app.get("/exercises", (req, res) => {
   exercises
     .findExercises({}, "", 0)
     .then((exercises) => {
